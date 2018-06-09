@@ -1,8 +1,10 @@
+#!/usr/bin/env python2
 import os
 import random
 import sys
 
 RECENT_LENGTH = 10
+VIDEO_FORMATS = [".mkv", ".mp4", ".hvec", ".mov", ".wma", ".wmv"]
 
 TV_SERIES_PATHS = {
 	"friends" : "/home/gaurav/Documents/Friends [chromium]"
@@ -13,7 +15,6 @@ def selectEpisode(path):
 	episodes = []
 	seasonPath = ""
 	episodePath = ""
-	print "er"
 	while True:
 		while True:
 			season = random.choice(seasons)
@@ -27,8 +28,7 @@ def selectEpisode(path):
 			extIndex = episode.rfind(".")
 			extension = episode[extIndex:]
 			episodePath = seasonPath+"/"+episode
-			if extension in [".mkv", ".mp4", ".hvec"]:
-				print episode
+			if extension in VIDEO_FORMATS:
 				break
 		try:
 			series = path.split("/")[-1]
@@ -36,7 +36,6 @@ def selectEpisode(path):
 			recent_episodes = recents.readlines()
 		except:
 			recent_episodes = []
-		# print len(recent_episodes)
 		if episodePath not in recent_episodes:
 			if len(recent_episodes) >= RECENT_LENGTH:
 				recent_episodes = recent_episodes[1:]

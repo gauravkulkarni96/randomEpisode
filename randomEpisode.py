@@ -48,7 +48,7 @@ def selectEpisode(path):
 	episodePath = episodePath.replace("~", "\~")
 	episodePath = episodePath.replace("$", "\$")
 	episodePath = episodePath.replace(" ", "\\ ")
-	command = "vlc "+episodePath
+	command = "vlc --play-and-exit "+episodePath
 	os.system(command)
 	return
 
